@@ -19,9 +19,3 @@ export const HamburgerMenuIcon = styled.i`
   margin: 0.25rem;
   border-radius: 0.125rem;
 `;
-
-export const HamburgerMenuOptions = styled.div`
-  background-color: ${({ theme }) => theme.backgroundColor};
-  width: 10%;
-  height: 10vh;
-`;

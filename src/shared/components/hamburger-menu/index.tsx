@@ -12,15 +12,6 @@ const HamburgerMenu: React.FC = () => {
         <HamburgerMenuIcon></HamburgerMenuIcon>
         <HamburgerMenuIcon></HamburgerMenuIcon>
       </HamburgerMenuIconContainer>
-      {/* {isOpen && (
-        <HamburgerMenuOptions>
-          <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact Us</li>
-          </ul>
-        </HamburgerMenuOptions>
-      )} */}
     </>
   );
 };
