@@ -1,38 +1,32 @@
 import React from "react";
-import { SEARCH_BAR } from "../../../constants";
-import InputComponent from "../input-component";
-import {
-    InputComponentWrapper,
-    StyledSearchBar,
-    SvgWrapper,
-} from "./search-bar-styles";
+import DropDownComponent from "../drop-down-component";
+import { InputComponentWrapper, StyledSearchBar, SvgWrapper } from "./styles";
 
 type Props = {
-    title?: string;
-    id?: string;
-    value: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
+  onChange: (selectedOption: any) => void;
+  options: { value: string; label: string }[];
+  customStyles: any;
 };
 
 const SearchBarComponent: React.FC<Props> = ({
-    title,
-    id,
-    value,
-    onChange,
+  placeholder,
+  onChange,
+  options,
+  customStyles,
 }: Props) => (
-    <StyledSearchBar>
-        <SvgWrapper />
-        <InputComponentWrapper>
-            <InputComponent
-                title={title}
-                id={id}
-                placeholder={SEARCH_BAR.PLACEHOLDER}
-                value={value}
-                onChange={onChange}
-                width={"100%"}
-            />
-        </InputComponentWrapper>
-    </StyledSearchBar>
+  <StyledSearchBar>
+    <SvgWrapper />
+    <InputComponentWrapper>
+      <DropDownComponent
+        placeholder={placeholder ?? ""}
+        options={options}
+        onChange={onChange}
+        isMulti={true}
+        customStyles={customStyles}
+      />
+    </InputComponentWrapper>
+  </StyledSearchBar>
 );
 
 export default SearchBarComponent;

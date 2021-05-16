@@ -5,12 +5,12 @@ import "./App.css";
 import FurnitureDelivery from "./furniture-delivery";
 import store from "./store";
 import GlobalStyle from "./themes/global-styles";
-import { theme } from "./themes/theme";
+import { lightTheme } from "./themes/theme";
 
 function App() {
   return (
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={lightTheme}>
         <GlobalStyle />
         <FurnitureDelivery />
       </ThemeProvider>

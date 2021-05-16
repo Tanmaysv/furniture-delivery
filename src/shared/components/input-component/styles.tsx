@@ -13,14 +13,13 @@ export const StyledInput = styled.input<StyledInputProps>`
   width: ${(props) => (props.width ? props.width : "auto")};
   height: 2rem;
   border-radius: 0.2rem;
-  border: 1.5px solid ${({ theme }) => theme.lightGrey};
+  border: 1.5px solid ${({ theme }) => theme.borderColor};
   text-overflow: ellipsis;
-  background-color: ${({ theme }) => theme.white};
-  &:focus-visible {
-    /* border: 1.5px solid blue !important; */
-    border-color: blue !important;
+  background-color: ${({ theme }) => theme.backgroundColor};
+  &:focus {
+    outline-color: #fe4066 !important;
   }
   &::placeholder {
-    color: ${({ theme }) => theme.lightGrey};
+    color: ${({ theme }) => theme.borderColor};
   }
 `;

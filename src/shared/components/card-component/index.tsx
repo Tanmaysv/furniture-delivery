@@ -1,5 +1,5 @@
 import React from "react";
-import { CardComponentWrapper } from "./card-styles";
+import { CardComponentWrapper } from "./styles";
 
 type Props = {
   title?: string;

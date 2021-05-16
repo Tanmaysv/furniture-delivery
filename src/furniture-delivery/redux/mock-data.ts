@@ -10,7 +10,7 @@ export const FurnitureMockData: FurnitureDataType[] = [
     rating: "4",
   },
   {
-    src: "furniture-images/Robert_Recliner_Manual_Choclate_Italian_Leather_LP.jpg",
+    src: "furniture-images/Griffin_Recliner_2S_Chocolate_LP.jpg",
     name: "Griffin Recliner",
     type: "One Seater, Dark Chocolate Leatherette",
     cost: "49,799",
@@ -18,7 +18,7 @@ export const FurnitureMockData: FurnitureDataType[] = [
     rating: "5",
   },
   {
-    src: "furniture-images/Robert_Recliner_Manual_Choclate_Italian_Leather_LP.jpg",
+    src: "furniture-images/Genoa_Wing_Chair_CB_LP.jpg",
     name: "Robert Two Seater Recliner Sofa",
     type: "One Seater, Burgandy Leatherette",
     cost: "99,799",
@@ -26,7 +26,7 @@ export const FurnitureMockData: FurnitureDataType[] = [
     rating: "4",
   },
   {
-    src: "furniture-images/Robert_Recliner_Manual_Choclate_Italian_Leather_LP.jpg",
+    src: "furniture-images/Lebowski_Recliner__Cobalt_3_seater_LP.jpg",
     name: "Lebowski Recliner",
     type: "Two Seater, Dark Chocolate Leatherette",
     cost: "79,799",
@@ -34,7 +34,7 @@ export const FurnitureMockData: FurnitureDataType[] = [
     rating: "5",
   },
   {
-    src: "furniture-images/Robert_Recliner_Manual_Choclate_Italian_Leather_LP.jpg",
+    src: "furniture-images/Genoa_Wing_Chair_CB_LP.jpg",
     name: "Genoa Wing Chair",
     type: "Black",
     cost: "69,799",

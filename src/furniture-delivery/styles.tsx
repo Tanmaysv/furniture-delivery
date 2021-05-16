@@ -12,10 +12,6 @@ export const FurnitureDataWrapper = styled.div`
   justify-content: center;
 `;
 
-export const FurnitureCardWrapper = styled.div`
-  /* margin: 1rem; */
-`;
-
 export const SearchBarWrapper = styled.div`
   width: 61.875rem;
   margin: 1rem auto;

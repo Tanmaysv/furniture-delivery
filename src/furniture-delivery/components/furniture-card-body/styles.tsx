@@ -5,5 +5,5 @@ export const FurnitureCardBodyText = styled.div`
 `;
 
 export const FurnitureCardBodyType = styled.div`
-  color: ${({ theme }) => theme.darkGrey};
+  color: ${({ theme }) => theme.darkBorderColor};
 `;

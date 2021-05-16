@@ -1,9 +1,6 @@
 import React from "react";
 import { FurnitureDataType } from "../../redux/type";
-import {
-  FurnitureCardBodyText,
-  FurnitureCardBodyType,
-} from "./styles";
+import { FurnitureCardBodyText, FurnitureCardBodyType } from "./styles";
 
 type Props = {
   furniture: FurnitureDataType;
@@ -12,7 +9,7 @@ type Props = {
 const FurnitureCardBody: React.FC<Props> = ({ furniture }: Props) => {
   return (
     <>
-      <img src={furniture.src} />
+      <img src={furniture.src} alt={furniture.name} />
       <FurnitureCardBodyText>
         <div>{furniture.name}</div>
         <FurnitureCardBodyType>({furniture.type})</FurnitureCardBodyType>

@@ -1,5 +1,5 @@
 import React from "react";
-import { InputHeader, StyledInput } from "./input-styles";
+import { InputHeader, StyledInput } from "./styles";
 
 type Props = {
     title?: string;

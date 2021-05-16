@@ -1,92 +1,58 @@
-import React, { Dispatch, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { DROP_DOWN, SORT_BY_ENUM } from "../constants";
+import React from "react";
+import { DROP_DOWN, SEARCH_BAR } from "../constants";
 import CardComponent from "../shared/components/card-component";
 import DropDownComponent from "../shared/components/drop-down-component";
+import LoadingIcon from "../shared/components/loading-icon";
 import SearchBarComponent from "../shared/components/search-bar-component";
 import { prepareDropDownOptions } from "../shared/utils";
-import { ApplicationState } from "../store/application-state";
 import FurnitureCardBody from "./components/furniture-card-body";
 import HeaderComponent from "./components/header-component";
-import { getFurnitureData } from "./redux/actions";
-import { FurnitureState } from "./redux/state";
-import { FurnitureDataType } from "./redux/type";
+import useFurnitureData from "./custom-hook/use-furniture-data";
 import {
   DropDownTitle,
   DropDownWrapper,
-  FurnitureCardWrapper,
   FurnitureDataWrapper,
   SearchBarWrapper,
 } from "./styles";
 
 const FurnitureDelivery: React.FC = () => {
-  const [enteredFurnitureName, setEnteredFurnitureName] = useState<string>("");
-  const [updatedFurnitureData, setUpdatedFurnitureData] = useState<
-    FurnitureDataType[]
-  >([]);
-  const [sortBy, setSortBy] = useState<SORT_BY_ENUM>(SORT_BY_ENUM.DEFAULT);
-  const dispatch: Dispatch<any> = useDispatch();
-
-  const { furnitureData, isLoading, error } = useSelector<
-    ApplicationState,
-    FurnitureState
-  >((state) => state.furniture);
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEnteredFurnitureName(e.target.value);
-  };
-
-  const handleDropDownChange = (selectionOption: {
-    value: string;
-    label: string;
-  }) => {
-    setSortBy(selectionOption.value as SORT_BY_ENUM);
-  };
-
-  useEffect(() => {
-    const filteredData: FurnitureDataType[] = enteredFurnitureName
-      ? furnitureData.filter((furniture) =>
-          furniture.name
-            .toLowerCase()
-            .includes(enteredFurnitureName.toLowerCase())
-        )
-      : furnitureData;
-    setUpdatedFurnitureData(filteredData);
-  }, [furnitureData, enteredFurnitureName]);
-
-  const sortLowToHigh = (data: FurnitureDataType[]): FurnitureDataType[] =>
-    [...data].sort((a, b) => (a.cost > b.cost ? 1 : -1));
-
-  const sortHighToLow = (data: FurnitureDataType[]): FurnitureDataType[] =>
-    [...data].sort((a, b) => (a.cost > b.cost ? -1 : 1));
-
-  const sortRating = (data: FurnitureDataType[]): FurnitureDataType[] =>
-    [...data].sort((a, b) => (a.rating > b.rating ? -1 : 1));
-
-  useEffect(() => {
-    let sortedData: FurnitureDataType[] = [];
-    if (sortBy === SORT_BY_ENUM.PRICE_LOW_TO_HIGH)
-      sortedData = sortLowToHigh(updatedFurnitureData);
-
-    if (sortBy === SORT_BY_ENUM.PRICE_HIGH_TO_LOW)
-      sortedData = sortHighToLow(updatedFurnitureData);
-
-    if (sortBy === SORT_BY_ENUM.RATING)
-      sortedData = sortRating(updatedFurnitureData);
-    sortBy && setUpdatedFurnitureData(sortedData);
-  }, [sortBy]);
-
-  useEffect(() => {
-    dispatch(getFurnitureData());
-  }, []);
+  const {
+    isLoading,
+    furnitureData,
+    updatedFurnitureData,
+    handleSearchChange,
+    handleDropDownChange,
+  } = useFurnitureData();
 
   return (
     <>
+      {isLoading && <LoadingIcon />}
       <HeaderComponent />
       <SearchBarWrapper>
         <SearchBarComponent
-          value={enteredFurnitureName}
+          placeholder={SEARCH_BAR.PLACEHOLDER}
+          options={prepareDropDownOptions(
+            furnitureData.map((furniture) => furniture.name)
+          )}
           onChange={handleSearchChange}
+          customStyles={{
+            container: (base: any) => ({
+              ...base,
+              width: "100%",
+            }),
+            option: (provided: any, state: any) => ({
+              ...provided,
+              color: state.isSelected && "#fe4066",
+              backgroundColor: state.isFocused && "#F8F8F8 !important",
+            }),
+            control: (provided: any, state: any) => ({
+              ...provided,
+              borderColor: state.isFocused ? "#fe4066 !important" : "#dcdcdc",
+              boxShadow: state.isFocused && "none",
+              borderWidth: "2px",
+              paddingLeft: "2rem",
+            }),
+          }}
         />
       </SearchBarWrapper>
       <DropDownWrapper>
@@ -100,14 +66,25 @@ const FurnitureDelivery: React.FC = () => {
               width: "35%",
               marginLeft: "auto",
             }),
+            option: (provided: any, state: any) => ({
+              ...provided,
+              color: state.isSelected && "#fe4066",
+              backgroundColor: state.isFocused && "#F8F8F8 !important",
+            }),
+            control: (provided: any, state: any) => ({
+              ...provided,
+              borderColor: state.isFocused ? "#fe4066 !important" : "#dcdcdc",
+              boxShadow: state.isFocused && "none",
+              borderWidth: "2px",
+            }),
           }}
         />
       </DropDownWrapper>
       <FurnitureDataWrapper>
         {updatedFurnitureData.map((furniture, index) => (
-          <FurnitureCardWrapper key={index + furniture.name}>
-            <CardComponent body={<FurnitureCardBody furniture={furniture} />} />
-          </FurnitureCardWrapper>
+          <CardComponent
+            body={<FurnitureCardBody key={index} furniture={furniture} />}
+          />
         ))}
       </FurnitureDataWrapper>
     </>
